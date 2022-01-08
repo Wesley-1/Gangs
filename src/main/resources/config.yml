@@ -1,0 +1,38 @@
+Ranks:
+  Owner:
+    name: "&c&lOwner"
+    ladder: 0
+    permissions:
+      - 'CHAT'
+      - 'KICK'
+      - 'INVITE'
+  Mod:
+    name: "&b&lMod"
+    ladder: 1
+    permissions:
+      - 'CHAT'
+      - 'INVITE'
+      - 'KICK'
+  Member:
+    name: "&b&lMember"
+    ladder: 2
+    permissions:
+      - 'CHAT'
+
+# Change the
+Ladder:
+  Member: 2
+
+Messages:
+  Gangs:
+    Invite_Inviter: "&aYou have invited %invited%"
+    Invite_Invited: "&aYou have been invited by %inviter%"
+    JoinedTeam: "&a%joiner% has joined the gang!"
+    JoinedPersonal: "&aYou have joined %gang_name%"
+    LeftTeam: "&c%whoLeft% Has left the gang!"
+    LeftPersonal: "&cYou have left the gang %gang_name%"
+    BeenKickedPersonal: "&cYou have been kicked by %kicker%"
+    BeenKickedTeam: "&c%kicked% has been kicked by %kicker%"
+    BeenPromoted: "&aYou have been promoted to &f&l%newRank%"
+    HighestPromotionPromoter: "&cYou cannot promote this user further!"
+    HighestPromotionPromoted: "&cYou have been promoted to the highest rank!"

@@ -1,0 +1,6 @@
+name: Gangs
+version: ${project.version}
+main: gangs.gangs.Gangs
+api-version: 1.17
+depend:
+  - AtlasUniversal
