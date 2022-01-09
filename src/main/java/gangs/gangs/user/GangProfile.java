@@ -17,6 +17,7 @@ public class GangProfile {
     public GangProfile(UUID playerUUID, Gang userGang) {
         this.playerUUID = playerUUID;
         this.userGang = userGang;
+        GangProfileData.loadedUsers.put(playerUUID, this);
     }
 
     public static boolean hasProfile(UUID uuid) {

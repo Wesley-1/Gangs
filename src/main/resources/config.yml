@@ -1,38 +1,224 @@
+###################################################################################################
 Ranks:
-  Owner:
-    name: "&c&lOwner"
+  OWNER:
     ladder: 0
+    displayName: "&f[&d&lLeader&f]"
     permissions:
-      - 'CHAT'
-      - 'KICK'
-      - 'INVITE'
-  Mod:
-    name: "&b&lMod"
+      - "KICK"
+      - "PROMOTE"
+      - "INVITE"
+      - "CHAT"
+    displayItem:
+      slot: 10
+      title: "&c&lLEADER"
+      lore:
+        - "&aThis is the leader rank."
+      material: EMERALD
+      data: 0
+      url: ""
+      amount: 1
+      glowing: true
+      enchantments:
+        - "DAMAGE_ALL:1"
+  CO_OWNER:
     ladder: 1
+    displayName: "&f[&d&lCO-LEADER&f]"
     permissions:
-      - 'CHAT'
-      - 'INVITE'
-      - 'KICK'
-  Member:
-    name: "&b&lMember"
-    ladder: 2
+      - "KICK"
+      - "PROMOTE"
+      - "CHAT"
+    displayItem:
+      slot: 11
+      title: "&c&lCO-LEADER"
+      lore:
+        - "&aThis is the co-leader rank."
+      material: DIAMOND
+      data: 0
+      url: ""
+      amount: 1
+      glowing: true
+      enchantments:
+        - "DAMAGE_ALL:1"
+  MOD:
+    ladder: 1
+    displayName: "&f[&b&lMOD&f]"
     permissions:
-      - 'CHAT'
-
-# Change the
-Ladder:
-  Member: 2
-
+      - "KICK"
+      - "CHAT"
+    displayItem:
+      slot: 12
+      title: "&b&lMOD"
+      lore:
+        - "&aThis is the mod rank."
+      material: ANVIL
+      data: 0
+      url: ""
+      amount: 1
+      glowing: true
+      enchantments:
+        - "DAMAGE_ALL:1"
+  MEMBER:
+    ladder: 0
+    displayName: "&f[&b&lMEMBER&f]"
+    permissions:
+      - "KICK"
+      - "CHAT"
+    displayItem:
+      slot: 13
+      title: "&b&lMEMBER"
+      lore:
+        - "&aThis is the member rank."
+      material: STICK
+      data: 0
+      url: ""
+      amount: 1
+      glowing: true
+      enchantments:
+        - "DAMAGE_ALL:1"
+###################################################################################################
+Permissions:
+  CHAT:
+    slot: 13
+    title: "&bChat"
+    lore:
+      - "&bHas Permission: &f%hasPermission%"
+    material: EMERALD
+    data: 0
+    url: ""
+    amount: 1
+    glowing: true
+    enchantments:
+      - "DAMAGE_ALL:1"
+  INVITE:
+    slot: 12
+    title: "&bInvite"
+    lore:
+      - "&bHas Permission: &f%hasPermission%"
+    material: DIAMOND
+    data: 0
+    url: ""
+    amount: 1
+    glowing: true
+    enchantments:
+      - "DAMAGE_ALL:1"
+  KICK:
+    slot: 11
+    title: "&bKick"
+    lore:
+      - "&bHas Permission: &f%hasPermission%"
+    material: ANVIL
+    data: 0
+    url: ""
+    amount: 1
+    glowing: true
+    enchantments:
+      - "DAMAGE_ALL:1"
+  PROMOTE:
+    slot: 10
+    title: "&bPromote"
+    lore:
+      - "&bHas Permission: &f%hasPermission%"
+    material: REDSTONE_BLOCK
+    data: 0
+    url: ""
+    amount: 1
+    glowing: true
+    enchantments:
+      - "DAMAGE_ALL:1"
+menus:
+  RANK_MENU:
+    title: "&bRankMenu"
+    rows: 3
+    fills:
+      '1':
+        title: "&r"
+        lore: [ ]
+        url: ""
+        material: STAINED_GLASS_PANE
+        data: 8
+        slots: [ 1, 2, 3 ]
+      '2':
+        title: "&A extra fill slot"
+        lore: [ ]
+        url: ""
+        material: STAINED_GLASS_PANE
+        data: 7
+        slots: [ 4 ]
+  PERMISSION_MENU:
+    title: "&bPermsMenu"
+    rows: 3
+    fills:
+      '1':
+        title: "&r"
+        lore: [ ]
+        url: ""
+        material: STAINED_GLASS_PANE
+        data: 8
+        slots: [ 1, 2, 3 ]
+      '2':
+        title: "&A extra fill slot"
+        lore: [ ]
+        url: ""
+        material: STAINED_GLASS_PANE
+        data: 7
+        slots: [ 4 ]
+  GANG_MENU:
+    items:
+      permissions:
+        slot: 10
+        title: "&bPermissions"
+        lore:
+          - "Click this to open the permissions menu"
+        material: DIAMOND_SWORD
+        data: 0
+        url: ""
+        amount: 1
+        glowing: true
+        enchantments:
+          - "DAMAGE_ALL:1"
+    title: "&bGang Menu"
+    rows: 3
+    fills:
+      '1':
+        title: "&r"
+        lore: []
+        url: ""
+        material: STAINED_GLASS_PANE
+        data: 8
+        slots: [1, 2, 3]
+      '2':
+        title: "&A extra fill slot"
+        lore: []
+        url: ""
+        material: STAINED_GLASS_PANE
+        data: 7
+        slots: [4]
+###################################################################################################
 Messages:
   Gangs:
+    GangAlreadyExistsWithThatName: "&cA gang already exists with this name, please try again"
+    GangCreated: "&aA new gang has been created with the name %gang_name% by %creator%"
+    YouAreNotInAGang: "&cYou are not in a gang"
+    GangCantBeDisbanded: "&cThis gang cannot be disbanded because there are still people in the gang."
+    GangDisbanded: "&cThe gang &f%gang_name% has been disbanded!"
+    MustBeOwnerToDisband: "&cYou must be the owner to disband a gang"
+    YouAreLeader_YouCannotLeave: "&cBecause you are the leader you must disband the gang."
+    NoPendingInvite: "&cYou have no pending invites"
+    InviteExpired_Inviter: "&cThe invite sent to %invited% for them to join %gang_name% has expired!"
+    InviteExpired_Invited: "&cThe invite from %inviter% for you to join %gang_name% has expired!"
+    AlreadyHasInvitePending: "&cThis user already has an invite pending, please wait"
+    NoInviteWithName: "&cYou don't have an invite from this gang"
+    AlreadyInGang: "&cThis user is already in a gang!"
+    CannotPromoteUser: "&cYou cannot promote this user"
+    NoPermission: "&cYou don't have permission to use this gang command"
     Invite_Inviter: "&aYou have invited %invited%"
-    Invite_Invited: "&aYou have been invited by %inviter%"
+    Invite_Invited: "&aYou have been invited by &f%inviter% to join Gang: &f%gang_name%"
     JoinedTeam: "&a%joiner% has joined the gang!"
     JoinedPersonal: "&aYou have joined %gang_name%"
     LeftTeam: "&c%whoLeft% Has left the gang!"
     LeftPersonal: "&cYou have left the gang %gang_name%"
     BeenKickedPersonal: "&cYou have been kicked by %kicker%"
     BeenKickedTeam: "&c%kicked% has been kicked by %kicker%"
-    BeenPromoted: "&aYou have been promoted to &f&l%newRank%"
-    HighestPromotionPromoter: "&cYou cannot promote this user further!"
-    HighestPromotionPromoted: "&cYou have been promoted to the highest rank!"
+    BeenPromotedTeam: "&f&l%promoter% &ahas promoted &f&l%promoted% &ato %newRank%"
+    BeenPromotedPersonal: "&aYou have been promoted by &f&l%promoter% &ato %newRank%"
+###################################################################################################

@@ -1,32 +1,40 @@
 package gangs.gangs.gangs.gang;
 
 import gangs.gangs.Gangs;
+import gangs.gangs.data.GangData;
 import gangs.gangs.gangs.ranks.Rank;
+import gangs.gangs.gangs.ranks.enums.Ranks;
+import gangs.gangs.permissions.Permission;
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Getter
 @Setter
 public class Gang {
 
-    private final UUID identifier;
     private final UUID ownerUUID;
     private final String gangName;
+    private final HashMap<Rank, List<Permission>> rankPermissions;
     private final HashMap<UUID, Rank> teamMembers;
 
-    public Gang(UUID identifier, UUID ownerUUID, String gangName) {
-        this.identifier = identifier;
+    public Gang(UUID ownerUUID, String gangName) {
         this.ownerUUID = ownerUUID;
+
         this.gangName = gangName;
+
         this.teamMembers = new HashMap<>();
-        this.teamMembers.put(ownerUUID, Gangs.getRankManager().getLoadedRanks().get(0));
+        this.teamMembers.put(ownerUUID, Ranks.getRankByLadder(0));
+
+        this.rankPermissions = new HashMap<>();
+        for (Ranks rank : Ranks.values()) {
+            List<Permission> permissions = new LinkedList<>();
+            rank.getRank().getBasePermissions().forEach(permission -> permissions.add(Permission.fromString(permission)));
+            rankPermissions.put(rank.getRank(), permissions);
+        }
+
+        GangData.loadedGangs.put(gangName, this);
     }
 
 /*
@@ -52,15 +60,6 @@ public class Gang {
         //    ).replace("%newRank%", this.teamMembers.get(uuid).getRank(nextPromotion).getName()));
 
         }
-    }
-
-    public void kickMember(UUID whoKicked, UUID toKick) {
-        this.teamMembers.remove(toKick);
-        Player kickedPlayer = Objects.requireNonNull(Bukkit.getPlayer(toKick));
-
-        kickedPlayer.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                Objects.requireNonNull(Gangs.getInstance().getConfig().getString("Messages.Gangs.BeenKicked"))
-                        .replaceAll("%whoKicked%", Objects.requireNonNull(Bukkit.getPlayer(whoKicked)).getName())));
     }
 
  */
