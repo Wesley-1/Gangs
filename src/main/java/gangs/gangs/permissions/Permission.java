@@ -12,13 +12,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum Permission {
 
     CHAT("CHAT", "Permissions.CHAT"),
     KICK("KICK", "Permissions.KICK"),
     INVITE("INVITE", "Permissions.INVITE"),
-    PROMOTE("PROMOTE", "Permissions.PROMOTE");
+    PROMOTE("PROMOTE", "Permissions.PROMOTE"),
+    DEMOTE("DEMOTE", "Permissions.DEMOTE");
 
     @Getter
     private final String name;
@@ -27,14 +29,19 @@ public enum Permission {
     @Getter
     @Setter
     private ItemBuilder displayItem;
-    private final JavaPlugin instance;
     @Getter
     private final String slot;
 
+    /**
+     *
+     * @param name This is the name of that custom item.
+     * @param path This is the path to the custom item.
+     *
+     */
     Permission(String name, String path) {
         this.name = name;
         this.path = path;
-        instance = Gangs.getPlugin(Gangs.class);
+        JavaPlugin instance = Gangs.getPlugin(Gangs.class);
         displayItem = new ItemBuilder(instance, path);
         NMS.getInstance().setKey(displayItem, "DATA", name);
         this.slot = path + ".slot";

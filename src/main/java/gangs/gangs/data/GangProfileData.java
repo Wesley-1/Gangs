@@ -15,10 +15,7 @@ public class GangProfileData implements AtlasComponent {
 
     private GangProfileData() {}
 
-    public static void load() {
-        Persist.getInstance().loadOrSaveDefault(INSTANCE, GangProfileData.class, "GangProfiles");
-    }
-
+    public static void load() { Persist.getInstance().loadOrSaveDefault(INSTANCE, GangProfileData.class, "GangProfiles"); }
     public static void save() {
         Persist.getInstance().save(INSTANCE, "GangProfiles");
     }

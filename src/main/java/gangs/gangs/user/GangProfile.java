@@ -1,7 +1,7 @@
 package gangs.gangs.user;
 
 import gangs.gangs.data.GangProfileData;
-import gangs.gangs.gangs.gang.Gang;
+import gangs.gangs.gangs.Gang;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,8 +19,7 @@ public class GangProfile {
         this.userGang = userGang;
         GangProfileData.loadedUsers.put(playerUUID, this);
     }
-
-    public static boolean hasProfile(UUID uuid) {
-        return GangProfileData.loadedUsers.containsKey(uuid);
+    public static boolean doesntHaveProfile(UUID uuid) {
+        return !GangProfileData.loadedUsers.containsKey(uuid);
     }
 }

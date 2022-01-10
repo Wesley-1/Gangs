@@ -1,7 +1,6 @@
 package gangs.gangs.data;
 
-import gangs.gangs.gangs.gang.Gang;
-import gangs.gangs.user.GangProfile;
+import gangs.gangs.gangs.Gang;
 import me.elapsed.universal.AtlasComponent;
 import me.elapsed.universal.database.json.serializer.Persist;
 
@@ -19,7 +18,6 @@ public class GangData implements AtlasComponent {
     public static void load() {
         Persist.getInstance().loadOrSaveDefault(INSTANCE, GangData.class, "GangData");
     }
-
     public static void save() {
         Persist.getInstance().save(INSTANCE, "GangData");
     }

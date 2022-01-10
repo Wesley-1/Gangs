@@ -1,17 +1,10 @@
 package gangs.gangs.commands;
 
 import gangs.gangs.Gangs;
-import gangs.gangs.commands.subcommands.player.inviting.GangInvite;
-import gangs.gangs.commands.subcommands.player.inviting.GangJoin;
-import gangs.gangs.commands.subcommands.leaving.GangKick;
-import gangs.gangs.commands.subcommands.player.promotion.GangPromote;
-import gangs.gangs.commands.subcommands.special.GangCreate;
-import gangs.gangs.commands.subcommands.leaving.GangDisband;
-import gangs.gangs.commands.subcommands.leaving.GangLeave;
-import gangs.gangs.gangs.ranks.Rank;
+import gangs.gangs.commands.subcommands.*;
 import gangs.gangs.menus.GangMenu;
-import gangs.gangs.menus.permissions.PermissionMenu;
-import gangs.gangs.menus.permissions.ranks.RankPermissionMenu;
+import gangs.gangs.menus.players.MembersMenu;
+import gangs.gangs.utils.MessageUtil;
 import me.elapsed.universal.commands.ACommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -37,12 +30,19 @@ public class GangCommand extends ACommand {
                 new GangKick(),
                 new GangInvite(),
                 new GangJoin(),
-                new GangPromote()
+                new GangPromote(),
+                new GangDemote(),
+                new GangHelp(),
+                new GangWho()
         ).forEach(this::addSubcommand);
     }
     @Override
     public void perform(CommandSender commandSender, String s, String[] strings) {
-        Player player = (Player) commandSender;
-        new RankPermissionMenu(player, instance).displayMenu();
+        try {
+            Player player = (Player) commandSender;
+            new GangMenu(player, instance).displayMenu();
+        } catch(Exception ignored) {
+            MessageUtil.sendMessagePersonal(instance.getConfig().getStringList("Messages.Gang.Other.Args"), (Player) commandSender);
+        }
     }
 }

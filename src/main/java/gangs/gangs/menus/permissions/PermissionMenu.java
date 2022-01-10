@@ -3,12 +3,11 @@ package gangs.gangs.menus.permissions;
 import gangs.gangs.Gangs;
 import gangs.gangs.data.GangData;
 import gangs.gangs.data.GangProfileData;
-import gangs.gangs.gangs.gang.Gang;
+import gangs.gangs.gangs.Gang;
 import gangs.gangs.gangs.ranks.Rank;
 import gangs.gangs.menus.permissions.ranks.RankPermissionMenu;
 import gangs.gangs.permissions.Permission;
 import gangs.gangs.user.GangProfile;
-import gangs.gangs.util.Pair;
 import lombok.var;
 import me.elapsed.universal.commons.objects.Placeholder;
 import me.elapsed.universal.commons.utils.TextUtility;
@@ -24,6 +23,7 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.awt.*;
@@ -46,14 +46,24 @@ public class PermissionMenu extends Menu {
     public void run() {
         GangProfile profile = GangProfileData.loadedUsers.get(player.getUniqueId());
         Gang gang = GangData.loadedGangs.get(profile.getUserGang().getGangName());
-        updateTitle(rank.getDisplayName());
+
+        updateTitle(this.getTitle().replace("%displayRank%", rank.getDisplayName()));
 
         for (Permission permission : Permission.values()) {
-            this.setItem(plugin.getConfig().getInt(permission.getSlot()), permission.getDisplayItem().addPlaceholders(new Placeholder("%hasPermission%", checkStatus(gang.getRankPermissions().get(rank), permission))), event ->  {
-                update(rank, gang, gang.getRankPermissions().get(rank), permission);
-                getInventory().setStorageContents(getInventory().getContents());
+            final ItemStack item = permission.getDisplayItem().clone();
+            {
+                final ItemMeta meta = item.getItemMeta();
+                meta.setLore(TextUtility.colorize(meta.getLore(),
+                        new Placeholder("%hasPermission%", checkStatus(gang.getRankPermissions().get(rank), permission))));
+                item.setItemMeta(meta);
+            }
+            this.setItem(plugin.getConfig().getInt(permission.getSlot()), item, event -> {
+                if (profile.getUserGang().getOwnerUUID().equals(player.getUniqueId())) {
+                    update(rank, gang, gang.getRankPermissions().get(rank), permission);
+                }
             });
         }
+        //this.fillEmptySlots(new ItemBuilder(plugin, "menus.PERMISSION_MENU.fills"), true);
         setCloseExecutor(e -> destroy());
     }
 

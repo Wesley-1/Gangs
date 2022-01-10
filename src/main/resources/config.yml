@@ -1,4 +1,4 @@
-###################################################################################################
+
 Ranks:
   OWNER:
     ladder: 0
@@ -40,7 +40,7 @@ Ranks:
       enchantments:
         - "DAMAGE_ALL:1"
   MOD:
-    ladder: 1
+    ladder: 2
     displayName: "&f[&b&lMOD&f]"
     permissions:
       - "KICK"
@@ -58,7 +58,7 @@ Ranks:
       enchantments:
         - "DAMAGE_ALL:1"
   MEMBER:
-    ladder: 0
+    ladder: 3
     displayName: "&f[&b&lMEMBER&f]"
     permissions:
       - "KICK"
@@ -75,7 +75,6 @@ Ranks:
       glowing: true
       enchantments:
         - "DAMAGE_ALL:1"
-###################################################################################################
 Permissions:
   CHAT:
     slot: 13
@@ -125,45 +124,62 @@ Permissions:
     glowing: true
     enchantments:
       - "DAMAGE_ALL:1"
+  DEMOTE:
+    slot: 14
+    title: "&bDemote"
+    lore:
+      - "&bHas Permission: &f%hasPermission%"
+    material: REDSTONE_BLOCK
+    data: 0
+    url: ""
+    amount: 1
+    glowing: true
+    enchantments:
+      - "DAMAGE_ALL:1"
+################################################################################################################################################################################################################################
 menus:
   RANK_MENU:
     title: "&bRankMenu"
     rows: 3
     fills:
-      '1':
-        title: "&r"
-        lore: [ ]
-        url: ""
-        material: STAINED_GLASS_PANE
-        data: 8
-        slots: [ 1, 2, 3 ]
-      '2':
-        title: "&A extra fill slot"
-        lore: [ ]
-        url: ""
-        material: STAINED_GLASS_PANE
-        data: 7
-        slots: [ 4 ]
+      title: "&b"
+      lore:
+        - ""
+      material: STAINED_GLASS_PANE
+      data: 15
+      url: ""
+      amount: 1
+      glowing: true
+      enchantments:
+        - "DAMAGE_ALL:1"
   PERMISSION_MENU:
-    title: "&bPermsMenu"
+    title: "%displayRank%"
     rows: 3
     fills:
-      '1':
-        title: "&r"
-        lore: [ ]
-        url: ""
-        material: STAINED_GLASS_PANE
-        data: 8
-        slots: [ 1, 2, 3 ]
-      '2':
-        title: "&A extra fill slot"
-        lore: [ ]
-        url: ""
-        material: STAINED_GLASS_PANE
-        data: 7
-        slots: [ 4 ]
+      title: "&b"
+      lore:
+        - ""
+      material: STAINED_GLASS_PANE
+      data: 15
+      url: ""
+      amount: 1
+      glowing: true
+      enchantments:
+        - "DAMAGE_ALL:1"
   GANG_MENU:
     items:
+      members:
+        slot: 11
+        title: "&bMembers"
+        lore:
+          - "Click this to open the members menu"
+        material: DIAMOND
+        data: 0
+        url: ""
+        amount: 1
+        glowing: true
+        enchants:
+          - "DAMAGE_ALL:1"
       permissions:
         slot: 10
         title: "&bPermissions"
@@ -179,46 +195,139 @@ menus:
     title: "&bGang Menu"
     rows: 3
     fills:
-      '1':
-        title: "&r"
-        lore: []
-        url: ""
-        material: STAINED_GLASS_PANE
-        data: 8
-        slots: [1, 2, 3]
-      '2':
-        title: "&A extra fill slot"
-        lore: []
-        url: ""
-        material: STAINED_GLASS_PANE
-        data: 7
-        slots: [4]
-###################################################################################################
+      title: "&b"
+      lore:
+        - ""
+      material: STAINED_GLASS_PANE
+      data: 15
+      url: ""
+      amount: 1
+      glowing: true
+      enchantments:
+        - "DAMAGE_ALL:1"
+  MEMBERS_MENU:
+    slot-offset: 9
+    title: "&bMembers Menu"
+    rows: 3
+    fills:
+      title: "&b"
+      lore:
+        - ""
+      material: STAINED_GLASS_PANE
+      data: 15
+      url: ""
+      amount: 1
+      glowing: true
+      enchantments:
+        - "DAMAGE_ALL:1"
+    items:
+      player-display:
+        slot: 11
+        title: "&b%name%"
+        lore:
+          - "Their rank is %rank%"
+        material: SKULL
+        data: 0
+        url: "https://textures.minecraft.net/texture/46ba63344f49dd1c4f5488e926bf3d9e2b29916a6c50d610bb40a5273dc8c82"
+        amount: 1
+        glowing: true
+        enchants:
+          - "DAMAGE_ALL:1"
 Messages:
-  Gangs:
-    GangAlreadyExistsWithThatName: "&cA gang already exists with this name, please try again"
-    GangCreated: "&aA new gang has been created with the name %gang_name% by %creator%"
-    YouAreNotInAGang: "&cYou are not in a gang"
-    GangCantBeDisbanded: "&cThis gang cannot be disbanded because there are still people in the gang."
-    GangDisbanded: "&cThe gang &f%gang_name% has been disbanded!"
-    MustBeOwnerToDisband: "&cYou must be the owner to disband a gang"
-    YouAreLeader_YouCannotLeave: "&cBecause you are the leader you must disband the gang."
-    NoPendingInvite: "&cYou have no pending invites"
-    InviteExpired_Inviter: "&cThe invite sent to %invited% for them to join %gang_name% has expired!"
-    InviteExpired_Invited: "&cThe invite from %inviter% for you to join %gang_name% has expired!"
-    AlreadyHasInvitePending: "&cThis user already has an invite pending, please wait"
-    NoInviteWithName: "&cYou don't have an invite from this gang"
-    AlreadyInGang: "&cThis user is already in a gang!"
-    CannotPromoteUser: "&cYou cannot promote this user"
-    NoPermission: "&cYou don't have permission to use this gang command"
-    Invite_Inviter: "&aYou have invited %invited%"
-    Invite_Invited: "&aYou have been invited by &f%inviter% to join Gang: &f%gang_name%"
-    JoinedTeam: "&a%joiner% has joined the gang!"
-    JoinedPersonal: "&aYou have joined %gang_name%"
-    LeftTeam: "&c%whoLeft% Has left the gang!"
-    LeftPersonal: "&cYou have left the gang %gang_name%"
-    BeenKickedPersonal: "&cYou have been kicked by %kicker%"
-    BeenKickedTeam: "&c%kicked% has been kicked by %kicker%"
-    BeenPromotedTeam: "&f&l%promoter% &ahas promoted &f&l%promoted% &ato %newRank%"
-    BeenPromotedPersonal: "&aYou have been promoted by &f&l%promoter% &ato %newRank%"
-###################################################################################################
+  Gang:
+    Other:
+      Args:
+        - "&cArgument error"
+      Already-In-Gang:
+        - "&f[&c!&f] &cYou are already in a gang!"
+      No-Permission:
+        - "&f[&c!&f] &cYou don't have permission to run this gang related command!"
+      Not-In-Gang:
+        - "&f[&c!&f] &cThis is a gang related command, to use this you must be in a gang!"
+      Help:
+        - "&f~~~~~~~~~~~~~~"
+        - "&aSeems there was an error with the command!"
+        - "&aBelow you will see the commands you can use."
+        - "&f~~~~~~~~~~~~~~"
+        - ""
+        - "&f* &b/gang demote <user> &f| &aThis requires the gang permission &fDEMOTE"
+        - "&f* &b/gang promote <user> &f| &aThis requires the gang permission &fPROMOTE"
+        - "&f* &b/gang kick <user> &f| &aThis requires the gang permission &fKICK"
+        - "&f* &b/gang invite <user> &f| &aThis requires the gang permission &fINVITE"
+        - "&f* &b/gang join <user> &f| &aThis doesn't require a gang permission to use!"
+        - "&f* &b/gang create <name> &f| &aThis doesn't require a gang permission to use!"
+        - "&f* &b/gang disband &f| &aThis requires you to be the leader and for the team to have no other members!"
+    Gang-Who:
+      Who:
+        - "&a%who%"
+        - ""
+        - "&aThis user is in the gang %gang_name%"
+        - "&aThe owner of this users gang is &f%gangOwner%"
+        - "&aThis users role in the gang is &f%rank%"
+    Kicked:
+      User-Cannot-Be-Kicked:
+        - "&cThis user cannot be kicked!"
+      Kicked-Personal:
+        - "&cYou have been kicked from &f%gang_name%"
+        - "&cYou were kicked by &f%kicker%"
+      Kicked-Team:
+        - "&f%kicked%&c was kicked by &f%kicker%"
+    Demotion:
+      Cannot-Demote-User:
+        - "&f[&c!&f] &cThe user %name% cannot be demoted!"
+      User-Demoted-Team:
+        - "&f%demoted%&c was demoted by &f%demoter%"
+      User-Demoted-Personal:
+        - "&cYou were demoted by &f%demoter%"
+    Promotion:
+      Cannot-Promote-User:
+        - "&f[&c!&f] &cThe user %name% cannot be promoted!"
+      User-Promoted-Team:
+        - "&f%promoted%&a was promoted by &f%promoter%"
+        - "&aTheir new rank is %newRank%"
+      User-Promoted-Personal:
+        - "&aYou were promoted by &f%promoter%"
+        - "&aYou're new rank is %newRank%"
+    Joining:
+      Joined-Team:
+        - "&f%joiner% &ahas joined the team."
+      Joined-Personal:
+        - "&fYou have joined the team."
+    Invitation:
+      No-Pending-Invite:
+        - "&f[&c!&f] &cYou don't have any pending invites!"
+      Invite-Already-Pending:
+        - "&f[&c!&f] &cThis user already has a pending invite!"
+      Invite-Exired-Sender:
+        - "&f[&c!&f] &cThe invite to %receiver% has expired!"
+      Invite-Expired-Receiver:
+        - "&f[&c!&f] &cThe invite from %sender% has expired!"
+      No-Invite-With-Gang-Name:
+        - "&f[&c!&f] &cYou don't have a pending invite from a gang with this name!"
+      Invite-Sent-Sender:
+        - "&f[&a!&f] &aYou have sent an invite to &f%receiver%&a. This invite will expire in 30 seconds."
+      Invite-Sent-Reciever:
+        - "&f[&a!&f] &aYou have been invited to join &f%gang_name% &aby &f%sender%"
+    Leaving:
+      You-Are-Leader:
+        - "&f[&c!&f] &cYou cannot leave a gang you are the leader of. You must kick everyone then disband it."
+      Left-Team:
+        - "&f[&c!&f] &cThe user &f%name% &chas left the team!"
+      Left-Personal:
+        - "&f[&c!&f] &cYou have left the team %gang_name%!"
+    Disbanding:
+      Disbanded:
+        - "&f[&c!&f] &cThe gang &f%gang_name% &chas been disbanded!"
+      Must-Be-Owner:
+        - "&f[&c!&f] &cYou must be the owner to disband a gang!"
+      Gang-Cant-Be-Disbanded:
+        - "&f[&c!&f] &cYou cannot disband this gang for one of the following reasons!"
+        - ""
+        - "&F* &CThe gang still has members."
+        - "&F* &CYou are not the leader of this gang."
+        - ""
+    Creation:
+      Already-Exists:
+        - "&CA gang with the name &f%gang_name% &calready exists!"
+      Created:
+        - "&aThe gang &f%gang_name% &ahas been created by &f%creator%"

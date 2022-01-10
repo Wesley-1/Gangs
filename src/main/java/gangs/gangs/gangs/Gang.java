@@ -1,6 +1,5 @@
-package gangs.gangs.gangs.gang;
+package gangs.gangs.gangs;
 
-import gangs.gangs.Gangs;
 import gangs.gangs.data.GangData;
 import gangs.gangs.gangs.ranks.Rank;
 import gangs.gangs.gangs.ranks.enums.Ranks;
@@ -8,7 +7,10 @@ import gangs.gangs.permissions.Permission;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
